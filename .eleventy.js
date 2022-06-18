@@ -16,6 +16,7 @@ module.exports = {
         return page.data.aliases.map((alias) => ({
           from: alias,
           to: page.url,
+          title: page.data.title,
         }));
       });
 

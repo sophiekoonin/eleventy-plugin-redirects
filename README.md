@@ -112,7 +112,6 @@ NB If you keep your layouts in a subfolder of `_includes`, you'll need to change
 
 This tells Eleventy to paginate the `collections.redirects` collection (which the plugin creates for you), creating a subdirectory with an index.html page for each one. 
 
-
 ### Create the template file
 Create a `redirects.njk` file where you keep your layouts (if you're using a different template engine, create a file with the appropriate extension). Call the `redirects` shortcode with `redirect` (the data we paginated). 
 
@@ -120,13 +119,12 @@ Create a `redirects.njk` file where you keep your layouts (if you're using a dif
 {% redirects redirect %}
 ```
 
-
-
 ## Build your own template
 The plugin generates a collection called `redirects` which has two values:
 
 * `from` - the alias you want to redirect from
 * `to` - the URL you are redirecting to
+* `title` - the title of the page
 
 You can use this collection in a template by accessing `collections.redirects` and iterating through the contents.
 
