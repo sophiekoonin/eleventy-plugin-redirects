@@ -54,7 +54,7 @@ aliases:
 ### Netlify/Vercel
 **Warning: if you already have a `vercel.json` file, this plugin will not work and may overwrite your existing config. Don't use this plugin if you already have `vercel.json` config.** 
 
-Create a `redirects.njk` file in the same directory as your index page (it can be called anything, really, as long as it's in the right place). This file will call the `redirectsTemplate` shortcode.
+Create a `redirects.njk` file in the same directory as your index page (it can be called anything, really, as long as it's in the right place). This file will call the `redirects` shortcode with `collections.redirects`. If you're using a different template engine, create a file with the appropriate extension. 
 
 The frontmatter should contain a `permalink` key, which will be:
 
@@ -69,41 +69,13 @@ Example `_redirects.njk` for Netlify:
 permalink: /_redirects 
 eleventyExcludeFromCollections: true
 ---
-{% redirectsTemplate %}
+{% redirects %}
 ```
-NB. The templates are written in Nunjucks, so if you're using a different engine you'll need to use the `templateEngineOverride` key in your redirects page frontmatter and set it to 'njk'.
 
-`redirects.liquid` (or .hbs, .pug etc)
-```
----
-templateEngineOverride: 'njk'
-permalink: /vercel.json
-eleventyExcludeFromCollections: true
----
-
-{% redirectsTemplate %}
-```
 
 ## Client-side redirects
 
 A bit more work is involved to get this set up, but this will generate an `index.html` file for each alias which has a meta tag pointing to the new location.
-
-### Create the template file
-Create a `redirects.njk` file where you keep your layouts. 
-```
-{% redirectsTemplate %}
-```
-
-NB. The templates are written in Nunjucks, so if you're using a different engine you'll need to use the `templateEngineOverride` key in your redirects page frontmatter and set it to 'njk'.
-
-`redirects.liquid` (or .hbs, .pug etc)
-```
----
-templateEngineOverride: 'njk'
----
-
-{% redirectsTemplate %}
-```
 
 ### Paginate the redirects
 We'll use a [Javascript template](https://www.11ty.dev/docs/languages/javascript/), so that we can take advantage of computed values. 
@@ -139,6 +111,16 @@ module.exports = Redirects;
 NB If you keep your layouts in a subfolder of `_includes`, you'll need to change the `layout: 'redirects.njk'` value to include the subfolder.
 
 This tells Eleventy to paginate the `collections.redirects` collection (which the plugin creates for you), creating a subdirectory with an index.html page for each one. 
+
+
+### Create the template file
+Create a `redirects.njk` file where you keep your layouts (if you're using a different template engine, create a file with the appropriate extension). Call the `redirects` shortcode with `redirect` (the data we paginated). 
+
+```
+{% redirects redirect %}
+```
+
+
 
 ## Build your own template
 The plugin generates a collection called `redirects` which has two values:

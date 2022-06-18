@@ -1,25 +1,22 @@
-const sharedTemplate = (inner) => `
-{%- for page in collections.all -%}
-  {%- if page.url and page.data.aliases.length %}
-    {%- for alias in page.data.aliases -%}
-    ${inner}
-    {%- endfor -%}
-  {%- endif -%}
-{%- endfor -%}
-`;
+const netlifyTemplate = (redirects) => {
+  return redirects
+    .map((redirect) => `${redirect.from} ${redirect.to}`)
+    .join('\n');
+};
 
-const netlifyTemplate = sharedTemplate('{{ alias }}  {{ page.url }}');
-
-const vercelTemplate = `
-{
+const vercelTemplate = (redirects) =>
+  `{
   "redirects": [
-    ${sharedTemplate(
-      `{ "source": {{ alias }}, "destination": {{ page.url }} }{% if not loop.last %},{% endif %}`
-    )}
+    ${redirects
+      .map(
+        (redirect) =>
+          `{ "source":  "${redirect.from}", "destination":"${redirect.to}" }`
+      )
+      .join(',\n')}
   ]
-}`;
+}`.trim();
 
-const clientSideTemplate = `
+const clientSideTemplate = (redirect) => `
 <!DOCTYPE html>
 <html>
   <head>
