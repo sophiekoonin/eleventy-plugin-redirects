@@ -2,7 +2,19 @@
   "name": "eleventy-plugin-redirects",
   "version": "1.0.0",
   "description": "An Eleventy plugin to generate redirect files or client-side redirects",
-  "main": "index.js",
+  "main": ".eleventy.js",
   "author": "Sophie Koonin",
-  "license": "MIT"
+  "license": "MIT",
+  "keywords": [
+    "eleventy",
+    "eleventy-plugin"
+  ],
+  "bugs": {
+    "url": "https://github.com/sophiekoonin/eleventy-plugin-redirects/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sophiekoonin/eleventy-plugin-redirects.git"
+  },
+  "homepage": "https://github.com/sophiekoonin/eleventy-plugin-redirects/"
 }
