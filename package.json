@@ -1,0 +1,8 @@
+{
+  "name": "eleventy-plugin-redirects",
+  "version": "1.0.0",
+  "description": "An Eleventy plugin to generate redirect files or client-side redirects",
+  "main": "index.js",
+  "author": "Sophie Koonin",
+  "license": "MIT"
+}
