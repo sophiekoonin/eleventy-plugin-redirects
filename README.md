@@ -69,7 +69,7 @@ Example `_redirects.njk` for Netlify:
 permalink: /_redirects 
 eleventyExcludeFromCollections: true
 ---
-{% redirects %}
+{% redirects collections.redirects %}
 ```
 
 
