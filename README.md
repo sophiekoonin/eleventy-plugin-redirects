@@ -21,7 +21,7 @@ Add the plugin into your `.eleventy.js` config. Pass in the options object with 
 const redirectsPlugin = require('eleventy-plugin-redirects');
 
 module.exports = function(eleventyConfig) {
-  config.addPlugin(redirectsPlugin, {
+  eleventyConfig.addPlugin(redirectsPlugin, {
     template: 'netlify'; // netlify, vercel or clientSide
   })
 }
