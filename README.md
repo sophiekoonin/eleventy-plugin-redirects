@@ -49,6 +49,22 @@ aliases:
 ---
 ```
 
+Additionally, redirects may be defined via configuration:
+
+```
+const redirectsPlugin = require('eleventy-plugin-redirects');
+
+module.exports = function(eleventyConfig) {
+  eleventyConfig.addPlugin(redirectsPlugin, {
+    template: 'netlify', // netlify, vercel or clientSide
+    redirects: {
+      '/old.pdf': '/new.pdf',
+      '/cool-project/': 'https://www.example.com/',
+    }
+  })
+}
+```
+
 ## Creating a redirects file 
 
 ### Netlify/Vercel
