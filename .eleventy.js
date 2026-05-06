@@ -10,7 +10,7 @@ module.exports = {
     const { template = 'netlify' } = options;
 
     config.addCollection('redirects', (collection) => {
-      const pages = collection.getFilteredByGlob('./src/**/*.md');
+      const pages = collection.getAll();
       const aliases = pages.map((page) => {
         if (!page.data.aliases) return null;
         return page.data.aliases.map((alias) => ({
