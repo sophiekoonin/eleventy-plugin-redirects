@@ -1,0 +1,26 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`templates > renders client-side redirect html output 1`] = `
+"
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>I live somewhere else now</title><link rel="canonical" href="/new-path"/><meta name="robots" content="noindex"><meta charset="utf-8"/><meta http-equiv="refresh" content="0; url=/new-path"/>
+  </head>
+</html>
+"
+`;
+
+exports[`templates > renders netlify redirects output 1`] = `
+"/old-one /new-one
+/old-two /new-two"
+`;
+
+exports[`templates > renders vercel redirects output 1`] = `
+"{
+  "redirects": [
+    { "source":  "/old-one", "destination":"/new-one" },
+{ "source":  "/old-two", "destination":"/new-two" }
+  ]
+}"
+`;
