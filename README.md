@@ -22,7 +22,7 @@ const redirectsPlugin = require('eleventy-plugin-redirects');
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(redirectsPlugin, {
-    template: 'netlify'; // netlify, vercel or clientSide
+    template: 'netlify' // netlify, vercel or clientSide
   })
 }
 ```
