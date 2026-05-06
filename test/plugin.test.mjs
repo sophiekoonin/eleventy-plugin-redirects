@@ -28,7 +28,7 @@ describe('plugin config', () => {
   it('creates redirects collection from aliases and skips pages without aliases', () => {
     const { collections } = setupPlugin();
     const fakeCollection = {
-      getFilteredByGlob: vi.fn().mockReturnValue([
+      getAll: vi.fn().mockReturnValue([
         {
           data: { title: 'First post', aliases: ['/old-1', '/older-1'] },
           url: '/first-post',
@@ -46,7 +46,7 @@ describe('plugin config', () => {
 
     const redirects = collections.redirects(fakeCollection);
 
-    expect(fakeCollection.getFilteredByGlob).toHaveBeenCalledWith('./src/**/*.md');
+    expect(fakeCollection.getAll).toHaveBeenCalled();
     expect(redirects).toEqual([
       { from: '/old-1', to: '/first-post', title: 'First post' },
       { from: '/older-1', to: '/first-post', title: 'First post' },
