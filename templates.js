@@ -1,6 +1,15 @@
+const escapeHtml = (str) =>
+  str.replace(/&/g, '&amp;')
+     .replace(/</g, '&lt;')
+     .replace(/>/g, '&gt;')
+     .replace(/"/g, '&quot;');
+
+
+const stripNewlines = (str) => str.replace(/[\r\n]/g, '');
+
 const netlifyTemplate = (redirects) => {
   return redirects
-    .map((redirect) => `${redirect.from} ${redirect.to}`)
+    .map((redirect) => `${stripNewlines(redirect.from)} ${stripNewlines(redirect.to)}`)
     .join('\n');
 };
 
@@ -10,7 +19,7 @@ const vercelTemplate = (redirects) =>
     ${redirects
       .map(
         (redirect) =>
-          `{ "source":  "${redirect.from}", "destination":"${redirect.to}" }`
+          `{ "source": ${JSON.stringify(redirect.from)}, "destination": ${JSON.stringify(redirect.to)} }`
       )
       .join(',\n')}
   ]
@@ -20,7 +29,7 @@ const clientSideTemplate = (redirect) => `
 <!DOCTYPE html>
 <html>
   <head>
-    <title>${redirect.title}</title><link rel="canonical" href="${redirect.to}"/><meta name="robots" content="noindex"><meta charset="utf-8"/><meta http-equiv="refresh" content="0; url=${redirect.to}"/>
+    <title>${escapeHtml(redirect.title)}</title><link rel="canonical" href="${escapeHtml(redirect.to)}"/><meta name="robots" content="noindex"><meta charset="utf-8"/><meta http-equiv="refresh" content="0; url=${escapeHtml(redirect.to)}"/>
   </head>
 </html>
 `;

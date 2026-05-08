@@ -19,8 +19,8 @@ exports[`templates > renders netlify redirects output 1`] = `
 exports[`templates > renders vercel redirects output 1`] = `
 "{
   "redirects": [
-    { "source":  "/old-one", "destination":"/new-one" },
-{ "source":  "/old-two", "destination":"/new-two" }
+    { "source": "/old-one", "destination": "/new-one" },
+{ "source": "/old-two", "destination": "/new-two" }
   ]
 }"
 `;
