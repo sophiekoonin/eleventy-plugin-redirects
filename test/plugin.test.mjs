@@ -54,6 +54,46 @@ describe('plugin config', () => {
     ]);
   });
 
+  it('includes config-based redirects', () => {
+    const { collections } = setupPlugin({
+      redirects: {
+        '/legacy-page': '/new-page',
+        '/another-old': '/another-new',
+      },
+    });
+    const fakeCollection = {
+      getAll: vi.fn().mockReturnValue([]),
+    };
+
+    const redirects = collections.redirects(fakeCollection);
+
+    expect(redirects).toEqual([
+      { from: '/legacy-page', to: '/new-page' },
+      { from: '/another-old', to: '/another-new' },
+    ]);
+  });
+
+  it('merges config-based redirects with alias-based redirects', () => {
+    const { collections } = setupPlugin({
+      redirects: { '/config-old': '/config-new' },
+    });
+    const fakeCollection = {
+      getAll: vi.fn().mockReturnValue([
+        {
+          data: { title: 'A post', aliases: ['/alias-old'] },
+          url: '/a-post',
+        },
+      ]),
+    };
+
+    const redirects = collections.redirects(fakeCollection);
+
+    expect(redirects).toEqual([
+      { from: '/alias-old', to: '/a-post', title: 'A post' },
+      { from: '/config-old', to: '/config-new' },
+    ]);
+  });
+
   it('uses netlify template by default', () => {
     const { shortcodes } = setupPlugin();
     const redirects = [{ from: '/old', to: '/new' }];
