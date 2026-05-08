@@ -7,7 +7,7 @@ const {
 module.exports = {
   initArguments: {},
   configFunction: (config, options = {}) => {
-    const { template = 'netlify' } = options;
+    const { template = 'netlify', redirects = {} } = options;
 
     config.addCollection('redirects', (collection) => {
       const pages = collection.getAll();
@@ -19,8 +19,12 @@ module.exports = {
           title: page.data.title,
         }));
       });
+      const configRedirects = Object.entries(redirects).map(([from, to]) => ({
+        from,
+        to,
+      }));
 
-      return aliases.filter(Boolean).flat();
+      return aliases.filter(Boolean).flat().concat(configRedirects);
     });
 
     config.addShortcode('redirects', (redirects) => {
