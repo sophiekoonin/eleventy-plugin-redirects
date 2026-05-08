@@ -22,7 +22,7 @@ const redirectsPlugin = require('eleventy-plugin-redirects');
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(redirectsPlugin, {
-    template: 'netlify'; // netlify, vercel or clientSide
+    template: 'netlify' // netlify, vercel or clientSide
   })
 }
 ```
@@ -147,5 +147,4 @@ You can use this collection in a template by accessing `collections.redirects` a
 ---
 
 ## Author
-Sophie Koonin - [localghost.dev](https://localghost.dev) / [@type__error](https://twitter.com/type__error)
-
+Sophie Koonin - [localghost.dev](https://localghost.dev) 

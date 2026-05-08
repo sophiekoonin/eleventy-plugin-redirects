@@ -3,8 +3,14 @@
   "version": "1.0.0",
   "description": "An Eleventy plugin to generate redirect files or client-side redirects",
   "main": ".eleventy.js",
+  "scripts": {
+    "test": "vitest run"
+  },
   "author": "Sophie Koonin",
   "license": "MIT",
+  "devDependencies": {
+    "vitest": "^4"
+  },
   "keywords": [
     "eleventy",
     "eleventy-plugin"
