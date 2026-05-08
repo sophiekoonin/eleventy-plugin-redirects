@@ -131,5 +131,4 @@ You can use this collection in a template by accessing `collections.redirects` a
 ---
 
 ## Author
-Sophie Koonin - [localghost.dev](https://localghost.dev) / [@type__error](https://twitter.com/type__error)
-
+Sophie Koonin - [localghost.dev](https://localghost.dev) 
