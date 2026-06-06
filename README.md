@@ -17,7 +17,7 @@ yarn add eleventy-plugin-redirects
 ```
 
 Add the plugin into your `.eleventy.js` config. Pass in the options object with the redirects template you want (permitted values are `netlify`, `vercel` or `clientSide`).
-```
+```js
 const redirectsPlugin = require('eleventy-plugin-redirects');
 
 module.exports = function(eleventyConfig) {
@@ -51,7 +51,7 @@ aliases:
 
 Additionally, redirects may be defined via configuration:
 
-```
+```js
 const redirectsPlugin = require('eleventy-plugin-redirects');
 
 module.exports = function(eleventyConfig) {
@@ -97,7 +97,7 @@ A bit more work is involved to get this set up, but this will generate an `index
 We'll use a [Javascript template](https://www.11ty.dev/docs/languages/javascript/), so that we can take advantage of computed values. 
 Create the file `redirects.11ty.js` in the same directory as all your other pages. Paste in the following:
 
-```
+```js
 class Redirects {
   data() {
     return {
